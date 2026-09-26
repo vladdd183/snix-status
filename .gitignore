@@ -1,0 +1,8 @@
+.worktrees/
+# stage artifacts of the Hermes megaproject flow; internal, never in the public repo
+specs/
+__pycache__/
+*.egg-info/
+.venv/
+dist/
+.pytest_cache/
