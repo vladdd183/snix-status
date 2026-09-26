@@ -8,6 +8,23 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Check report scaffold
+        run: |
+          test -f docs/snix-status.md
+          for needle in \
+            '# Статус Snix' \
+            '## Срез' \
+            '## Матрица' \
+            '## Расхождения с августом 2026' \
+            '## Что изменилось после 2026-08-09' \
+            '## Что не переносится на Snix' \
+            'f803bae05c19e59863f752bba4055d2c97d6ad4a' \
+            'git.snix.dev/snix/snix' \
+            '/home/vladdd183/Desktop/kwork/SB'
+          do
+            grep -F -q -- "$needle" docs/snix-status.md
+          done
+          grep -F -q -- '_Verbatim. Do not paraphrase._' docs/intent.md
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
